@@ -1,0 +1,124 @@
+<div class="user_app"><!-- 用户组件列表 begin -->
+	<div class="user_app_top"></div>
+    <div class="user_app_box">
+  <div class="userinfo">
+    	<div class="userpic" onmouseover="this.className='userpic over'" onmouseout="this.className='userpic'" ><span id="my_face"><space uid="mid">{uavatar=b}</space></span>
+		<a class="pic" href="{:U('home/account/index')}#face">上传头像</a>
+		</div>
+  		<div class="user_name">
+        	<h2>{$mid|getUserName}{$mid|getUserVerifiedIcon}{$mid|getUserGroupIcon}</h2>
+            <php>
+            	$user_credit = X('Credit')->getUserCredit($mid);
+            	foreach($user_credit as $k => $v) {
+            </php>
+           		<p>{$v['alias']}：<a href="{:U('home/Account/credit')}"><span class="cRed">{$v['credit']}</span></a></p>
+            <php>
+                }
+                unset($user_credit);
+            </php>
+        </div>
+        {:W('Medal',array('async'=>1))}
+  </div>
+  <!--关注-->
+  <div class="user_follow app_line">
+  	<php>$followInfo = getUserFollow($mid)</php>
+  	<span class="lineR"><a href="{:U('home/space/follow',array('type'=>'following', 'uid'=>$mid))}"><strong>{$followInfo['following']}</strong><br />关注</a></span>
+    <span class="lineR"><a href="{:U('home/space/follow',array('type'=>'follower', 'uid'=>$mid))}"><strong>{$followInfo['follower']}</strong><br />粉丝</a></span>
+    <span><a href="{:U('home/space/index',array('uid'=>$uid))}"><strong id="miniblog_count">{$mid|getMiniNum}</strong><br />微博</a></span>
+  </div>
+  <!--关注 end-->
+  <div class="celerity_menu app_line">
+  	<ul>
+    <li><a href="{:U('home/user/index')}" {:getMenuState('user/index')}>我的首页</a></li>
+	<li><a href="{:U('home/user/atme')}" {:getMenuState('user/atme')}>@提到我的 
+	<span id="app_left_count_atme"><gt name="userCount['atme']" value="0">(<font color="red">{$userCount.atme}</font>)</gt></span>
+	</a></li>
+    <li><a href="{:U('home/user/collection')}" {:getMenuState('user/collection')}>我的收藏</a></li>
+    <li><a href="{:U('home/user/comments')}" {:getMenuState('user/comments')}>我的评论 
+    <span id="app_left_count_comment"><gt name="userCount['comment']" value="0">(<font color="red">{$userCount.comment}</font>)</gt></span>
+    </a></li>
+  	</ul>
+  </div>
+    <div class="user_app_list app_line">
+        <ul>
+        <?php foreach ($ts['user_app'] as $_temp_type => $_temp_apps) { ?>
+        <?php foreach ($_temp_apps as $_temp_app) { ?>
+            <li>
+                <?php if(!$ts['site']['site_appalias_wordwrap']) $_temp_app['app_alias'] = mb_substr($_temp_app['app_alias'],0,4,'UTF8'); ?>
+                <?php if($_temp_type == 'local_app' || $_temp_type == 'local_default_app') { ?>
+                <a href="<?php echo $_temp_app['app_entry'];?>" class="a14">
+                    <img src="<?php echo $_temp_app['icon_url'];?>" />
+                    <?php echo $_temp_app['app_alias'];?>
+                </a>
+                <?php }else { ?>
+                <a href="__ROOT__/apps/myop/userapp.php?id=<?php echo $_temp_app['app_id'];?>" class="a14">
+                    <img src="http://appicon.manyou.com/icons/<?php echo $_temp_app['app_id'];?>" />
+                    <?php echo $_temp_app['app_alias'];?>
+                </a>
+                <?php }?>
+            </li>
+        <?php } ?>
+        <?php } ?>
+        </ul>
+    </div>
+    
+    <div class="app_add app_line">
+    <span class="right"><span class="ico_app_manage"></span><a href="{:U('home/Index/editapp')}">管理应用</a></span>
+    <span><span class="ico_app_add"></span><a href="{:U('home/Index/addapp')}">添加应用</a></span>
+    </div>
+    </div>
+	<div class="user_app_btm"></div>
+    <div>
+    {:W('RelatedUser',array('async'=>1))}
+        <div class="right_box">
+          <h2>关注的话题</h2>
+          <ul class="topic_list" rel="followTopicArea">
+          	<php>
+          	  if (!$followTopic) {
+          	    $followTopic = D('Follow','weibo')->getTopicList($mid);
+          	  }
+          	</php>
+            <volist id="vo" name="followTopic">
+              <li onmouseover="$(this).find('.ico_close').show()" onmouseout="$(this).find('.ico_close').hide()"><a class="ico_close right" style="display:none" title="删除" href="javascript:void(0)" onclick="deleteFollowTopic(this,'{$vo.topic_id}')">x</a><a href="{:U('home/user/search/',array('k'=>urlencode($vo['name'])))}" title="{$vo.name}">{$vo.name}</a></li>
+            </volist>
+          </ul>
+          <div class="alR lh25"><a href="javascript:void(0)" onclick="$('.quick_win').show()">+添加</a></div>
+          <div style="display:none;" class="quick_win">
+            <div class="alR mb5"><a href="javascript:void(0)" onclick="$('.quick_win').hide()" class="del" title="关闭"></a></div>
+            <p>
+              <input type="text" class="text" name="quick_name" style=" width:90px;"/>
+              <input type="button" onclick="addFollowTopic()" value="保存" class="btn_b" />
+            </p>
+            <p class="cGray2">请添加想关注的话题</p>
+          </div>
+        </div>
+        <div class="right_box">
+          <h2>热门话题榜</h2> 
+          <ul class="topic_list">
+          	<php>
+          	  if (!$hotTopic) {
+          	  	$hotTopic = D('Topic','weibo')->getHot();
+          	  }
+          	</php>
+            <volist id="vo" name="hotTopic">
+              <li><a href="{:U('home/user/search/',array('k'=>urlencode($vo['name'])))}" title="{$vo.name}">{$vo.name}({$vo.count})</a><div class="topic_tips">
+    	<div class="topic_arr"></div>
+        <div class="topic_info">东道主阿根廷被乌拉圭淘汰</div>
+    </div></li>
+            </volist>
+          </ul>
+        </div>
+		<volist name="ts['ad']['left']" id="vo">
+	    <div class="ad_left"><div class="ke-post">{$vo.content}</div></div>
+		</volist>
+    </div>
+	</div><!-- 用户组件列表 end -->
+    
+<php>
+function getMenuState($type){
+	$type = split('/',$type);
+	if( strtolower(MODULE_NAME)==strtolower($type[0]) && ( strtolower(ACTION_NAME)==strtolower($type[1]) || $type[1]=='*') ){
+		return 'class="on"';
+	}
+}
+</php>

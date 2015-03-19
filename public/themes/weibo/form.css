@@ -1,0 +1,35 @@
+﻿@charset "utf-8";
+/*-----------网站表单和按钮样式-------------------------------------------
+ 说明:
+------------------------------------------------------------ */
+.published:link, .published:active, .published:visited { background-image: url(images/btn_add.gif); background-repeat: no-repeat; background-position: 0px top; line-height: 21px; font-size: 12px; height: 21px; width: 60px; color: #005fab; font-weight: bold; display: block; float: right; overflow: hidden; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 20px; margin: 0; }
+
+.BtnShare, a.BtnShare { font-size: 12px; background: url(images/bg_Share.gif) no-repeat 0px center; width: 54px; display: inline-block; color:#339900; height: 21px; line-height:21px; border: 0px none;text-align: left; padding-left: 5px;cursor:pointer; }
+#TS_report a { font-size: 12px; color:#f00; line-height:21px; }
+
+.btn_b,.btn_w,.btn_big,.btn_big:hover,.btn_big_disable,.add_atn,.btn_relation,.btn_relation2,.add_atn_small,.btn_relation_small,.btn_relation span,.btn_relation2 span,btn_b_disable,.btn_green,.so_btn,.btn_green_w121,.btn_reg,.btn_b_disable{background: url(images/btn.gif) no-repeat 0 0; display: inline-block}
+
+.btn_b,a.btn_b,a.btn_b:hover{ font-size: 12px; height: 24px; width:60px; border:0 none; line-height: 24px;  text-align:center; padding:0; text-decoration:none; color:#fff}
+.btn_w,a.btn_w,a.btn_w:hover{ font-size: 12px; height: 24px; width:60px; border:0 none; line-height: 24px;  text-align:center; padding:0; text-decoration:none; color:#333}
+.btn_big{ background-position:0 -50px; height:28px; width:80px; margin-right:4px; border:0}
+.btn_big:hover{background-position:0 -79px;}
+.btn_big_disable{background-position:0 -108px;height:28px; width:80px; margin-right:4px; border:0}
+.btn_b { color: #fff; }
+.btn_b_disable{ color:#7d7d7e;background-position:-61px 0;font-size: 12px; height: 24px; width:60px; border:0 none; line-height: 24px;  text-align:center;}
+.btn_w { color:#333;background-position:0 -25px; margin-left:5px; _margin-top:3px}
+.btn_green{color:#fff;background-position:0 -195px; height:28px; display:inline-block; overflow:hidden; line-height:28px; border:0px}
+.btn_green_w121{color:#fff;background-position:0 -195px; height:28px; display:inline-block; overflow:hidden; line-height:28px; border:0px; width:121px;}
+.btn_reg,a.btn_reg,a.btn_reg:visited{ color:#FFF; width:158px; height:35px;background-position:0 -225px; text-align:center; line-height:35px; font-size:14px}
+a.btn_reg:hover{ background-position:0 -262px; text-decoration: none; }
+.btn_relation{background-position:right -166px;height:28px;  line-height:26px; padding-right:10px;_padding_right:5px; float:left;margin-left:23px;_margin-left:11px; font-size:12px}
+.btn_relation span{background-position:-88px -137px;height:28px; display:inline-block; line-height:26px; padding-left:23px; color:#999; font-size:12px;}
+.btn_relation2{background-position:right -166px;margin-left:18px;_margin-left:9px; font-size:12px;}
+.btn_relation2 span{background-position:0 -166px;}
+.add_atn{background-position:0 -137px;height:28px;width:62px; display:inline-block; line-height:26px; padding-left:25px; font-weight:bold;}
+a.add_atn,a.add_atn:visited{ color:#fff; font-size:12px;}
+/*输入框样式*/
+.text { border:1px solid #BDC7D8; font-size:12px; font-family: Arial, Helvetica, sans-serif; padding:3.5px 0;}
+.text2 { border:1px solid ; border-color:#90ad54 #d8edaf #d8edaf #90ad54; background-color:#f4ffd4; font-size:12px; font-family: Arial, Helvetica, sans-serif; padding:3.5px 0;}
+.text35 {border:1px solid #ddd;font-family:Arial,Helvetica,sans-serif;font-size:18px; height:33px; line-height:30px;}/* 高为35的输入框 */
+.text35on {border:1px solid #666;font-family:Arial,Helvetica,sans-serif;font-size:18px; height:33px;line-height:30px;}/* 高为35的输入框 选中时的样式 */
+

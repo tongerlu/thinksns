@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="http://www.luzhengtong.com/think/apps/admin/_static/admin.css" rel="stylesheet" type="text/css">
+<script>
+/**
+ * 全局变量
+ */
+var SITE_URL  = 'http://www.luzhengtong.com/think';
+var THEME_URL = 'http://www.luzhengtong.com/think/addons/theme/stv1/_static';
+var APPNAME   = 'admin';
+var UPLOAD_URL ='http://www.luzhengtong.com/think/data/upload';
+var MID		  = '1';
+var UID		  = '1';
+// Js语言变量
+var LANG = new Array();
+</script>
+<script type="text/javascript" src="http://www.luzhengtong.com/PHPwenjian/thinksns/></script>
+<script type="text/javascript" src="http://www.luzhengtong.com/PHPwenjian/thinksns/addons/theme/stv1/_static/js/core.js"></script>
+<script src="http://www.luzhengtong.com/PHPwenjian/thinksns/addons/theme/stv1/_static/js/module.js"></script>
+<script src="http://www.luzhengtong.com/PHPwenjian/thinksns/addons/theme/stv1/_static/js/common.js"></script>
+<script src="http://www.luzhengtong.com/PHPwenjian/thinksns/addons/theme/stv1/_static/js/module.common.js"></script>
+<script src="http://www.luzhengtong.com/PHPwenjian/thinksns/addons/theme/stv1/_static/js/module.weibo.js"></script>
+<script type="text/javascript" src="http://www.luzhengtong.com/PHPwenjian/thinksns/apps/admin/_static/admin.js?t=11"></script>
+<script type="text/javascript" src = "http://www.luzhengtong.com/think/addons/theme/stv1/_static/js/ui.core.js"></script>
+<script type="text/javascript" src = "http://www.luzhengtong.com/think/addons/theme/stv1/_static/js/ui.draggable.js"></script>
+<script src="http://www.luzhengtong.com/PHPwenjian/thinksns/data/lang/public_zh-cn.js"></script><script src="http://www.luzhengtong.com/PHPwenjian/thinksns/data/lang/admin_zh-cn.js"></script></head>
+<body>
+<div id="container" class="so_main">
+    <div class="page_tit">欢迎使用ThinkSNS社会化沟通、协作、管理平台</div>
+    <div class="form2">
+	    
+        <h4>提示：点击标题可以折叠栏目&nbsp;&nbsp;&nbsp;<span style="display:none; color:#FF0000" id="updateInfo">您有新的升级包需要升级【<a href="http://www.luzhengtong.com/think/index.php?app=admin&mod=Update&act=index">点这里升级</a>】</span></h4>
+         <h3 onclick="admin.fold('app_1');">用户信息</h3>
+         <div id='app_1' class="list">
+         	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+         		<tr >
+         			<th>总注册用户</th><th class="line_l">总活跃用户</th><th class="line_l">昨日最大在线量</th><th class="line_l">当前在线用户数</th><th class="line_l">一周最大在线用户数</th>
+         		</tr>
+         		<tr>
+         			<td>3</td>
+         			<td>3</td>
+         			<td>0</td>
+         			<td>0</td>
+         			<td>1</td>
+         		</tr>
+         	</table>
+         </div>
+         <h3 onclick="admin.fold('app_2');">访问信息</h3>
+         <div id='app_2' class="list">
+         	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+         		<tr>
+         			<th>时间</th><th class="line_l">浏览量</th><th class="line_l">独立访客量</th><th class="line_l">人均浏览次数</th>
+         		</tr>
+         		<tr>
+         			<td>今日</td>
+         			<td>160</td>
+         			<td>3</td>
+         			<td>53.33</td>
+         		</tr>
+         		<tr>
+         			<td>昨日</td>
+         			<td>0</td>
+         			<td>0</td>
+         			<td>0</td>
+         		</tr>
+         		<tr>
+         			<td>一周平均</td>
+         			<td>160</td>
+         			<td>3</td>
+         			<td>53.33</td>
+         		</tr>
+         	</table>
+         </div>
+                            <h3 onclick="admin.fold('app_3');">服务器信息</h3>
+            <div id="app_3">
+            <dl><dt><strong>核心版本：</strong></dt><dd>TS3.0</dd></dl><dl><dt><strong>服务器系统及PHP版本：</strong></dt><dd>WINNT / PHP v5.3.29</dd></dl><dl><dt><strong>服务器软件：</strong></dt><dd>Apache/2.2.25 (Win32) PHP/5.3.29</dd></dl><dl><dt><strong>最大上传许可：</strong></dt><dd>2M</dd></dl><dl><dt><strong>MySQL版本：</strong></dt><dd>5.5.39</dd></dl><dl><dt><strong>数据库大小：</strong></dt><dd>980.08 KB</dd></dl>            </div>            <h3 onclick="admin.fold('app_4');">开发团队</h3>
+            <div id="app_4">
+            <dl><dt><strong>版权所有：</strong></dt><dd><a href="http://www.zhishisoft.com" target="_blank">智士软件（北京）有限公司</a></dd></dl>            </div>    </div>
+</div>
+<script type="text/javascript">
+/**
+ * 初始化对象
+ */
+//表格样式
+$(document).ready(function(){
+    admin.bindTrOn();});
+</script>
+</body>
+</html>
+<script>
+var postURL = "http://www.luzhengtong.com/think/index.php?app=admin&mod=Update&act=step01_checkVersionByAjax";
+$.post(postURL, {isCheck:1}, function(res){
+	if(res==1)  $('#updateInfo').show();
+});
+</script>

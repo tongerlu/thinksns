@@ -1,0 +1,275 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="http://www.luzhengtong.com/think/public/admin/style.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>ThinkSNS后台管理</title>
+<script type="text/javascript" src="http://www.luzhengtong.com/think/public/js/jquery.js"></script>
+<script type="text/javascript">
+/* 按下F5时仅刷新iframe页面 */
+function inactiveF5(e) {
+	return ;
+	e=window.event||e;
+	var key = e.keyCode;
+	if (key == 116){
+		parent.MainIframe.location.reload();
+		if(document.all) {
+			e.keyCode = 0;
+			e.returnValue = false;
+		}else {
+			e.cancelBubble = true;
+			e.preventDefault();
+		}
+	}
+}
+
+function nof5() {
+    return ;
+	if(window.frames&&window.frames[0]) {
+		window.frames[0].focus();
+		for (var i_tem = 0; i_tem < window.frames.length; i_tem++) {
+			if (document.all) {
+				window.frames[i_tem].document.onkeydown = new Function("var e=window.frames[" + i_tem + "].event; if(e.keyCode==116){parent.MainIframe.location.reload();e.keyCode = 0;e.returnValue = false;};");
+			}else {
+				window.frames[i_tem].onkeypress = new Function("e", "if(e.keyCode==116){parent.MainIframe.location.reload();e.cancelBubble = true;e.preventDefault();}");
+			}
+		} //END for()
+	} //END if()
+}
+
+function refresh() {
+	parent.MainIframe.location.reload();
+}
+
+document.onkeydown=inactiveF5;
+</script>
+</head>
+
+<body scroll="no" style="margin:0; padding:0;" onload="nof5()">
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td colspan="3">
+		<div class="header"><!-- 头部 begin -->
+		    <div class="logo"><a href="http://www.luzhengtong.com/think/index.php?app=admin&mod=Index&act=index" >&nbsp;</a></div>
+		    <div class="nav_sub">
+		    	您好,管理员&nbsp; | <a href="http://www.luzhengtong.com/think/index.php?app=home&mod=Index&act=index">返回前台</a> | <a href="javascript:void(0);" onclick="refresh();">刷新</a> | <a href="http://www.luzhengtong.com/think/index.php?app=home&mod=Public&act=logoutAdmin">退出</a><br/>
+		    	<div id="TopTime"></div>
+		    </div>
+		    <div class="main_nav">
+		    	<a id="channel_index" class="on" href="javascript:void(0)" onclick="switchChannel('index');" hidefocus="true" style="outline:none;">首页</a><a id="channel_global"  href="javascript:void(0)" onclick="switchChannel('global');" hidefocus="true" style="outline:none;">全局</a><a id="channel_content"  href="javascript:void(0)" onclick="switchChannel('content');" hidefocus="true" style="outline:none;">内容</a><a id="channel_user"  href="javascript:void(0)" onclick="switchChannel('user');" hidefocus="true" style="outline:none;">用户</a><a id="channel_apps"  href="javascript:void(0)" onclick="switchChannel('apps');" hidefocus="true" style="outline:none;">应用</a><a id="channel_extension"  href="javascript:void(0)" onclick="switchChannel('extension');" hidefocus="true" style="outline:none;">扩展</a>			</div>                   
+		</div>
+		<div class="header_line"><span>&nbsp;</span></div>
+	</td>
+  </tr>
+  <tr>
+  	<td width="200px" height="100%" valign="top" id="FrameTitle" background="http://www.luzhengtong.com/think/public/admin/images/left_bg.gif">
+  		<div class="LeftMenu">
+		  		<!-- 第一级菜单，即大频道 -->
+  			      	<ul class="MenuList" id="root_index" >
+	      	<!-- 第二级菜单 -->
+	      			        <li class="treemenu">
+		          <a id="root_1" class="actuator" href="javascript:void(0)" onclick="switch_root_menu('1');" hidefocus="true" style="outline:none;">首页</a>
+		          <ul id="tree_1" class="submenu">
+		            		          	<!-- 第三级菜单 -->
+		          	                        		            	<li><a id="menu_2" href="javascript:void(0)" onClick="switch_sub_menu('2', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Home&act=statistics');" class="submenuA" hidefocus="true" style="outline:none;">首页</a></li>
+											                        		            	<li><a id="menu_3" href="javascript:void(0)" onClick="switch_sub_menu('3', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Home&act=update');" class="submenuA" hidefocus="true" style="outline:none;">系统升级</a></li>
+													          </ul>
+		        </li>
+				      	</ul>
+			      	<ul class="MenuList" id="root_global" style="display:none;">
+	      	<!-- 第二级菜单 -->
+	      			        <li class="treemenu">
+		          <a id="root_4" class="actuator" href="javascript:void(0)" onclick="switch_root_menu('4');" hidefocus="true" style="outline:none;">全局配置</a>
+		          <ul id="tree_4" class="submenu">
+		            		          	<!-- 第三级菜单 -->
+		          	                        		            	<li><a id="menu_5" href="javascript:void(0)" onClick="switch_sub_menu('5', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Global&act=siteopt');" class="submenuA" hidefocus="true" style="outline:none;">站点配置</a></li>
+											                        		            	<li><a id="menu_6" href="javascript:void(0)" onClick="switch_sub_menu('6', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Global&act=register');" class="submenuA" hidefocus="true" style="outline:none;">注册配置</a></li>
+											                        		            	<li><a id="menu_7" href="javascript:void(0)" onClick="switch_sub_menu('7', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Global&act=invite');" class="submenuA" hidefocus="true" style="outline:none;">邀请配置</a></li>
+											                        		            	<li><a id="menu_8" href="javascript:void(0)" onClick="switch_sub_menu('8', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Global&act=credit');" class="submenuA" hidefocus="true" style="outline:none;">积分配置</a></li>
+											                        		            	<li><a id="menu_9" href="javascript:void(0)" onClick="switch_sub_menu('9', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Global&act=announcement');" class="submenuA" hidefocus="true" style="outline:none;">公告配置</a></li>
+											                        		            	<li><a id="menu_10" href="javascript:void(0)" onClick="switch_sub_menu('10', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Global&act=email');" class="submenuA" hidefocus="true" style="outline:none;">邮件配置</a></li>
+											                        		            	<li><a id="menu_11" href="javascript:void(0)" onClick="switch_sub_menu('11', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Global&act=attachConfig');" class="submenuA" hidefocus="true" style="outline:none;">附件配置</a></li>
+											                        		            	<li><a id="menu_12" href="javascript:void(0)" onClick="switch_sub_menu('12', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Global&act=platform');" class="submenuA" hidefocus="true" style="outline:none;">平台配置</a></li>
+											                        		            	<li><a id="menu_13" href="javascript:void(0)" onClick="switch_sub_menu('13', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Global&act=document');" class="submenuA" hidefocus="true" style="outline:none;">文章配置</a></li>
+											                        		            	<li><a id="menu_14" href="javascript:void(0)" onClick="switch_sub_menu('14', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Global&act=audit');" class="submenuA" hidefocus="true" style="outline:none;">审核配置</a></li>
+													          </ul>
+		        </li>
+				      	</ul>
+			      	<ul class="MenuList" id="root_content" style="display:none;">
+	      	<!-- 第二级菜单 -->
+	      			        <li class="treemenu">
+		          <a id="root_15" class="actuator" href="javascript:void(0)" onclick="switch_root_menu('15');" hidefocus="true" style="outline:none;">内容管理</a>
+		          <ul id="tree_15" class="submenu">
+		            		          	<!-- 第三级菜单 -->
+		          	                        		            	<li><a id="menu_16" href="javascript:void(0)" onClick="switch_sub_menu('16', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Content&act=ad');" class="submenuA" hidefocus="true" style="outline:none;">广告管理</a></li>
+											                        		            	<li><a id="menu_17" href="javascript:void(0)" onClick="switch_sub_menu('17', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Content&act=expression');" class="submenuA" hidefocus="true" style="outline:none;">表情管理</a></li>
+											                        		            	<li><a id="menu_18" href="javascript:void(0)" onClick="switch_sub_menu('18', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Content&act=template');" class="submenuA" hidefocus="true" style="outline:none;">模板管理</a></li>
+											                        		            	<li><a id="menu_19" href="javascript:void(0)" onClick="switch_sub_menu('19', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Content&act=attach');" class="submenuA" hidefocus="true" style="outline:none;">附件管理</a></li>
+											                        		            	<li><a id="menu_20" href="javascript:void(0)" onClick="switch_sub_menu('20', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Content&act=comment');" class="submenuA" hidefocus="true" style="outline:none;">评论管理</a></li>
+											                        		            	<li><a id="menu_21" href="javascript:void(0)" onClick="switch_sub_menu('21', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Content&act=message');" class="submenuA" hidefocus="true" style="outline:none;">短消息管理</a></li>
+											                        		            	<li><a id="menu_22" href="javascript:void(0)" onClick="switch_sub_menu('22', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Content&act=notify');" class="submenuA" hidefocus="true" style="outline:none;">通知管理</a></li>
+											                        		            	<li><a id="menu_23" href="javascript:void(0)" onClick="switch_sub_menu('23', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Content&act=feed');" class="submenuA" hidefocus="true" style="outline:none;">动态管理</a></li>
+											                        		            	<li><a id="menu_24" href="javascript:void(0)" onClick="switch_sub_menu('24', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Content&act=denounce');" class="submenuA" hidefocus="true" style="outline:none;">举报管理</a></li>
+											                        		            	<li><a id="menu_25" href="javascript:void(0)" onClick="switch_sub_menu('25', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Content&act=adminLog');" class="submenuA" hidefocus="true" style="outline:none;">后台管理日志</a></li>
+													          </ul>
+		        </li>
+				      	</ul>
+			      	<ul class="MenuList" id="root_user" style="display:none;">
+	      	<!-- 第二级菜单 -->
+	      			        <li class="treemenu">
+		          <a id="root_26" class="actuator" href="javascript:void(0)" onclick="switch_root_menu('26');" hidefocus="true" style="outline:none;">用户</a>
+		          <ul id="tree_26" class="submenu">
+		            		          	<!-- 第三级菜单 -->
+		          	                        		            	<li><a id="menu_27" href="javascript:void(0)" onClick="switch_sub_menu('27', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=User&act=user');" class="submenuA" hidefocus="true" style="outline:none;">用户管理</a></li>
+											                        		            	<li><a id="menu_28" href="javascript:void(0)" onClick="switch_sub_menu('28', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=User&act=userGroup');" class="submenuA" hidefocus="true" style="outline:none;">用户组管理</a></li>
+											                        		            	<li><a id="menu_29" href="javascript:void(0)" onClick="switch_sub_menu('29', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=User&act=verified');" class="submenuA" hidefocus="true" style="outline:none;">用户认证</a></li>
+											                        		            	<li><a id="menu_30" href="javascript:void(0)" onClick="switch_sub_menu('30', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=User&act=setField');" class="submenuA" hidefocus="true" style="outline:none;">资料配置</a></li>
+											                        		            	<li><a id="menu_31" href="javascript:void(0)" onClick="switch_sub_menu('31', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=User&act=relateUser');" class="submenuA" hidefocus="true" style="outline:none;">相关用户配置</a></li>
+											                        		            	<li><a id="menu_32" href="javascript:void(0)" onClick="switch_sub_menu('32', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=User&act=follower');" class="submenuA" hidefocus="true" style="outline:none;">粉丝榜配置</a></li>
+											                        		            	<li><a id="menu_33" href="javascript:void(0)" onClick="switch_sub_menu('33', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=User&act=message');" class="submenuA" hidefocus="true" style="outline:none;">消息群发</a></li>
+													          </ul>
+		        </li>
+					        <li class="treemenu">
+		          <a id="root_34" class="actuator" href="javascript:void(0)" onclick="switch_root_menu('34');" hidefocus="true" style="outline:none;">权限</a>
+		          <ul id="tree_34" class="submenu">
+		            		          	<!-- 第三级菜单 -->
+		          	                        		            	<li><a id="menu_35" href="javascript:void(0)" onClick="switch_sub_menu('35', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=User&act=node');" class="submenuA" hidefocus="true" style="outline:none;">节点管理</a></li>
+											                        		            	<li><a id="menu_36" href="javascript:void(0)" onClick="switch_sub_menu('36', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=User&act=popedom');" class="submenuA" hidefocus="true" style="outline:none;">权限管理</a></li>
+													          </ul>
+		        </li>
+				      	</ul>
+			      	<ul class="MenuList" id="root_apps" style="display:none;">
+	      	<!-- 第二级菜单 -->
+	      			        <li class="treemenu">
+		          <a id="root_37" class="actuator" href="javascript:void(0)" onclick="switch_root_menu('37');" hidefocus="true" style="outline:none;">应用管理</a>
+		          <ul id="tree_37" class="submenu">
+		            		          	<!-- 第三级菜单 -->
+		          	                        		            	<li><a id="menu_38" href="javascript:void(0)" onClick="switch_sub_menu('38', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Apps&act=applist');" class="submenuA" hidefocus="true" style="outline:none;">应用列表</a></li>
+											                        		            	<li><a id="menu_39" href="javascript:void(0)" onClick="switch_sub_menu('39', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Apps&act=install');" class="submenuA" hidefocus="true" style="outline:none;">应用安装</a></li>
+													          </ul>
+		        </li>
+					        <li class="treemenu">
+		          <a id="root_40" class="actuator" href="javascript:void(0)" onclick="switch_root_menu('40');" hidefocus="true" style="outline:none;">应用配置</a>
+		          <ul id="tree_40" class="submenu">
+		            		          	<!-- 第三级菜单 -->
+		          	                        		            	<li><a id="menu_41" href="javascript:void(0)" onClick="switch_sub_menu('41', 'http://www.luzhengtong.com/think/index.php?app=weibo&mod=Admin&act=index');" class="submenuA" hidefocus="true" style="outline:none;">微博</a></li>
+											                        		            	<li><a id="menu_42" href="javascript:void(0)" onClick="switch_sub_menu('42', 'http://www.luzhengtong.com/think/apps/myop/myop.php?my_suffix=%2Fappadmin%2Flist');" class="submenuA" hidefocus="true" style="outline:none;">漫游</a></li>
+													          </ul>
+		        </li>
+				      	</ul>
+			      	<ul class="MenuList" id="root_extension" style="display:none;">
+	      	<!-- 第二级菜单 -->
+	      			        <li class="treemenu">
+		          <a id="root_43" class="actuator" href="javascript:void(0)" onclick="switch_root_menu('43');" hidefocus="true" style="outline:none;">工具</a>
+		          <ul id="tree_43" class="submenu">
+		            		          	<!-- 第三级菜单 -->
+		          	                        		            	<li><a id="menu_44" href="javascript:void(0)" onClick="switch_sub_menu('44', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Tool&act=backup');" class="submenuA" hidefocus="true" style="outline:none;">数据备份</a></li>
+											                        		            	<li><a id="menu_45" href="javascript:void(0)" onClick="switch_sub_menu('45', 'http://www.luzhengtong.com/think/cleancache.php?all');" class="submenuA" hidefocus="true" style="outline:none;">缓存更新</a></li>
+											                        		            	<li><a id="menu_46" href="javascript:void(0)" onClick="switch_sub_menu('46', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Tool&act=area');" class="submenuA" hidefocus="true" style="outline:none;">地区管理</a></li>
+											                        		            	<li><a id="menu_47" href="javascript:void(0)" onClick="switch_sub_menu('47', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Tool&act=inviteRecord');" class="submenuA" hidefocus="true" style="outline:none;">邀请统计</a></li>
+											                        		            	<li><a id="menu_48" href="javascript:void(0)" onClick="switch_sub_menu('48', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Tool&act=cnzz');" class="submenuA" hidefocus="true" style="outline:none;">CNZZ统计</a></li>
+													          </ul>
+		        </li>
+					        <li class="treemenu">
+		          <a id="root_49" class="actuator" href="javascript:void(0)" onclick="switch_root_menu('49');" hidefocus="true" style="outline:none;">插件</a>
+		          <ul id="tree_49" class="submenu">
+		            		          	<!-- 第三级菜单 -->
+		          	                        		            	<li><a id="menu_50" href="javascript:void(0)" onClick="switch_sub_menu('50', 'http://www.luzhengtong.com/think/index.php?app=admin&mod=Plugin&act=medal');" class="submenuA" hidefocus="true" style="outline:none;">勋章管理</a></li>
+													          </ul>
+		        </li>
+				      	</ul>
+				</div>
+	</td>
+    <td>
+   	  <iframe onload="nof5()" id="MainIframe" name="MainIframe" scrolling="yes" src="http://www.luzhengtong.com/think/index.php?app=admin&mod=Home&act=statistics" width="100%" height="100%" frameborder="0" noresize> </iframe>
+	</td>
+  </tr>
+</table>
+</body>
+
+<script type="text/javascript">
+	var current_channel   = null;
+	var current_menu_root = null;
+	var current_menu_sub  = null;
+	var viewed_channel	  = new Array();
+	
+	$(document).ready(function(){
+		switchChannel('index');
+	});
+	
+	//切换频道（即头部的tab）
+	function switchChannel(channel) {
+		if(current_channel == channel) return false;
+		
+		$('#channel_'+current_channel).removeClass('on');
+		$('#channel_'+channel).addClass('on');
+		
+		$('#root_'+current_channel).css('display', 'none');
+		$('#root_'+channel).css('display', 'block');
+		
+		var tmp_menulist = $('#root_'+channel).find('a');
+		tmp_menulist.each(function(i, n) {
+			// 防止重复点击ROOT菜单
+			if( i == 0 && $.inArray($(n).attr('id'), viewed_channel) == -1 ) {
+				$(n).click();
+				viewed_channel.push($(n).attr('id'));
+			}
+			if ( i == 1 ) {
+				$(n).click();
+			}
+		});
+
+		current_channel = channel;
+	}
+	
+	function switch_root_menu(root) {
+		root = $('#tree_'+root);
+		if (root.css('display') == 'block') {
+			root.css('display', 'none');
+			root.parent().css('backgroundImage', 'url(http://www.luzhengtong.com/think/public/admin/images/ArrOn.png)');
+		}else {
+			root.css('display', 'block');
+			root.parent().css('backgroundImage', 'url(http://www.luzhengtong.com/think/public/admin/images/ArrOff.png)');
+		}
+	}
+	
+	function switch_sub_menu(sub, url) {
+		if(current_menu_sub) {
+			$('#menu_'+current_menu_sub).attr('class', 'submenuA');
+		}
+		$('#menu_'+sub).attr('class', 'submenuB');
+		current_menu_sub = sub;
+		
+		parent.MainIframe.location = url;
+	}
+	
+	/*
+	function resetEscAndF5(e) {
+		e = e ? e : window.event;
+		actualCode = e.keyCode ? e.keyCode : e.charCode;
+		if(actualCode == 116 && parent.MainIframe) {
+			parent.MainIframe.location.reload();
+			if(document.all) {
+				e.keyCode = 0;
+				e.returnValue = false;
+			} else {
+				e.cancelBubble = true;
+				e.preventDefault();
+			}
+		}
+	}
+	
+	function _attachEvent(obj, evt, func, eventobj) {
+		eventobj = !eventobj ? obj : eventobj;
+		if(obj.addEventListener) {
+			obj.addEventListener(evt, func, false);
+		} else if(eventobj.attachEvent) {
+			obj.attachEvent('on' + evt, func);
+		}
+	}
+	
+	_attachEvent(document.documentElement, 'keydown', resetEscAndF5);
+	_attachEvent(window, 'keydown', resetEscAndF5, parent.frames[0]);
+	*/
+</script>
+</html>
